@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RoomRelation</string>
+    <string name="get_data">Get Data</string>
 </resources>

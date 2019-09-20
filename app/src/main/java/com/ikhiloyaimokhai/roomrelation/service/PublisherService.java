@@ -8,6 +8,6 @@ import retrofit2.http.GET;
 
 public interface PublisherService {
 
-    @GET("")
+    @GET("get-publisher")
     LiveData<ApiResponse<Publisher>> getPublishers();
 }

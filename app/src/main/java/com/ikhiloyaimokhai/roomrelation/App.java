@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ikhiloyaimokhai.roomrelation.db.PublisherDatabase;
 import com.ikhiloyaimokhai.roomrelation.db.dao.PublisherDao;
-import com.ikhiloyaimokhai.roomrelation.db.entity.Publisher;
 import com.ikhiloyaimokhai.roomrelation.factory.LiveDataCallAdapterFactory;
 import com.ikhiloyaimokhai.roomrelation.service.PublisherService;
 import com.ikhiloyaimokhai.roomrelation.util.AppExecutors;
@@ -19,7 +18,7 @@ import timber.log.Timber;
 
 public class App extends Application {
     private static final String TAG = App.class.getSimpleName();
-    private static final String BASE_URL = "https://4124ce61-915b-4590-879e-21956799abf9.mock.pstmn.io/";
+    private static final String BASE_URL = "https://c506b847-e0f6-4214-bd4f-e8525fef90d8.mock.pstmn.io/";
     private PublisherService mPublsiherService;
 
     private static App INSTANCE;

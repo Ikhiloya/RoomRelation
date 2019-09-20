@@ -26,8 +26,8 @@ public class Author {
     @SerializedName("lastName")
     @Expose
     private String lastName;
-    @SerializedName("books")
-    @Expose
+
+    @Ignore
     private List<Book> books = null;
 
     /**
@@ -50,20 +50,22 @@ public class Author {
     }
 
 
-    public Integer getId() {
-        return id;
-    }
-
-
     @ForeignKey
             (entity = Publisher.class,
                     parentColumns = "id",
                     childColumns = "publisherId",
                     onDelete = CASCADE)
     private Integer publisherId;
+
+
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
 
     public String getFirstName() {
         return firstName;
@@ -101,9 +103,11 @@ public class Author {
     @Override
     public String toString() {
         return "Author{" +
-                "firstName='" + firstName + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", books=" + books +
+                ", publisherId=" + publisherId +
                 '}';
     }
 }

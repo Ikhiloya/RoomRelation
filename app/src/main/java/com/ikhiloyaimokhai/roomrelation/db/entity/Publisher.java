@@ -28,7 +28,7 @@ public class Publisher {
     private String company;
 
     @Ignore
-    private List<Author> author = null;
+    private List<Author> authors = null;
 
     /**
      * No args constructor for use in serialization
@@ -37,18 +37,27 @@ public class Publisher {
     }
 
     /**
-     * @param author
+     * @param authors
      * @param lastName
      * @param company
      * @param firstName
      */
     @Ignore
-    public Publisher(String firstName, String lastName, String company, List<Author> author) {
+    public Publisher(String firstName, String lastName, String company, List<Author> authors) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.company = company;
-        this.author = author;
+        this.authors = authors;
+    }
+
+
+    public Publisher(PublisherDetails publisherDetails) {
+        this.id = publisherDetails.getPublisher().getId();
+        this.firstName = publisherDetails.getPublisher().getFirstName();
+        this.lastName = publisherDetails.getPublisher().getLastName();
+        this.company = publisherDetails.getPublisher().getCompany();
+        this.authors = this.getAuthors(publisherDetails.getAuthorBookDetails());
     }
 
 
@@ -85,28 +94,39 @@ public class Publisher {
     }
 
     public List<Author> getAuthors() {
-        return author;
+        return authors;
     }
 
-    public void setAuthor(List<Author> author) {
-        this.author = author;
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
     }
 
 
     public void setAuthor(Author author) {
-        if (this.author == null) {
-            this.author = new ArrayList<>();
+        if (this.authors == null) {
+            this.authors = new ArrayList<>();
         }
-        this.author.add(author);
+        this.authors.add(author);
+    }
+
+
+    public List<Author> getAuthors(List<AuthorBookDetails> authorBookDetails) {
+        for (AuthorBookDetails details : authorBookDetails) {
+            Author author = details.getAuthor();
+            author.setBooks(details.getBooks());
+            this.setAuthor(details.getAuthor());
+        }
+        return this.authors;
     }
 
     @Override
     public String toString() {
         return "Publisher{" +
-                "firstName='" + firstName + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", company='" + company + '\'' +
-                ", author=" + author +
+                ", authors=" + authors +
                 '}';
     }
 }

@@ -13,17 +13,18 @@ import static androidx.room.ForeignKey.CASCADE;
 @Entity(tableName = "book")
 public class Book {
 
+
+
+    @PrimaryKey(autoGenerate = true)
+    private Integer id;
+
+
     @SerializedName("name")
     @Expose
     private String name;
     @SerializedName("genre")
     @Expose
     private String genre;
-
-    @PrimaryKey(autoGenerate = true)
-    private Integer id;
-
-
     /**
      * No args constructor for use in serialization
      */
@@ -84,8 +85,10 @@ public class Book {
     @Override
     public String toString() {
         return "Book{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", genre='" + genre + '\'' +
+                ", authorId=" + authorId +
                 '}';
     }
 }
