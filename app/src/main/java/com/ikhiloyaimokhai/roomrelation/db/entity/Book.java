@@ -10,9 +10,11 @@ import com.google.gson.annotations.SerializedName;
 
 import static androidx.room.ForeignKey.CASCADE;
 
+/**
+ * Entity used to model the {@link Book} SQLite table in the database
+ */
 @Entity(tableName = "book")
 public class Book {
-
 
 
     @PrimaryKey(autoGenerate = true)
@@ -25,6 +27,7 @@ public class Book {
     @SerializedName("genre")
     @Expose
     private String genre;
+
     /**
      * No args constructor for use in serialization
      */

@@ -5,7 +5,11 @@ import androidx.room.Relation;
 
 import java.util.List;
 
+/**
+ * A Pojo that is used by {@link Relation} to query for entity relationships
+ */
 public class AuthorBookDetails {
+
     public AuthorBookDetails() {
     }
 

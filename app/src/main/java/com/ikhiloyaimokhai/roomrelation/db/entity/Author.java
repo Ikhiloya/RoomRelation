@@ -12,6 +12,9 @@ import java.util.List;
 
 import static androidx.room.ForeignKey.CASCADE;
 
+/**
+ * Entity used to model the {@link Author} SQLite table in the database
+ */
 @Entity(tableName = "author")
 public class Author {
 

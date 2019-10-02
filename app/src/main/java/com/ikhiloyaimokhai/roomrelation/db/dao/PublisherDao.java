@@ -50,13 +50,15 @@ public interface PublisherDao {
     void saveBooks(List<Book> books);
 
 
-
     //delete
     @Transaction
     @Query("DELETE FROM publisher")
     void deletePublishers();
 
 
+    /**
+     * using {@link androidx.room.Relation} to query for pojo
+     */
     @Transaction
     @Query("SELECT * FROM publisher")
     LiveData<List<PublisherDetails>> loadPublishers();

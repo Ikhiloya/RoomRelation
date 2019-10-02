@@ -22,6 +22,8 @@ import com.ikhiloyaimokhai.roomrelation.viewmodel.PublisherViewModel;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import timber.log.Timber;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private PublisherViewModel mPublisherViewModel;
@@ -41,21 +43,24 @@ public class MainActivity extends AppCompatActivity {
         mPublisherViewModel = ViewModelProviders.of(this, factory).get(PublisherViewModel.class);
 
 
-        getBookBtn.setOnClickListener(view -> {
-            mPublisherViewModel.getPublshers().observe(MainActivity.this, listResource -> {
-                if (listResource.status.equals(Status.SUCCESS)) {
-                    List<PublisherDetails> data = listResource.data;
-                    if (data != null && !data.isEmpty()) {
+        getBookBtn.setOnClickListener(view ->
+                mPublisherViewModel.getPublshers().observe(MainActivity.this, listResource -> {
+                    if (listResource.status.equals(Status.SUCCESS)) {
+                        List<PublisherDetails> data = listResource.data;
 
-                        List<Publisher> publishers = listResource.data.stream().map(Publisher::new).collect(Collectors.toList());
-                        Log.i(TAG, publishers.toString());
+                        if (data != null && !data.isEmpty()) {
+                            Timber.i(data.toString());
+                            List<Publisher> publishers = listResource.data.
+                                    stream().map(Publisher::new).
+                                    collect(Collectors.toList());
 
-                        tv.setText(formatResult(publishers));
+                            Timber.i(publishers.toString());
+
+                            tv.setText(formatResult(publishers));
+                        }
                     }
-                }
-            });
-        });
-
+                })
+        );
     }
 
     private String formatResult(List<Publisher> publishers) {

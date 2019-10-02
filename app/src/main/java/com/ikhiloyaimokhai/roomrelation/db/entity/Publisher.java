@@ -52,6 +52,9 @@ public class Publisher {
     }
 
 
+    /**
+     * constructor that maps the {@link PublisherDetails} to {@link Publisher}
+     */
     public Publisher(PublisherDetails publisherDetails) {
         this.id = publisherDetails.getPublisher().getId();
         this.firstName = publisherDetails.getPublisher().getFirstName();
@@ -59,7 +62,6 @@ public class Publisher {
         this.company = publisherDetails.getPublisher().getCompany();
         this.authors = this.getAuthors(publisherDetails.getAuthorBookDetails());
     }
-
 
     public Integer getId() {
         return id;
@@ -110,7 +112,7 @@ public class Publisher {
     }
 
 
-    public List<Author> getAuthors(List<AuthorBookDetails> authorBookDetails) {
+    private List<Author> getAuthors(List<AuthorBookDetails> authorBookDetails) {
         for (AuthorBookDetails details : authorBookDetails) {
             Author author = details.getAuthor();
             author.setBooks(details.getBooks());
